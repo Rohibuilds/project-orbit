@@ -1,0 +1,21 @@
+name: Test ORBIT
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install application test dependencies
+        run: python -m pip install Flask==3.1.1 requests==2.32.4 numpy==2.2.6 opencv-python-headless==4.11.0.86
+      - name: Check syntax and installer
+        run: |
+          python -m compileall -q orbit.py modules
+          bash -n install.sh
+      - name: Regression tests without physical hardware
+        run: python -m unittest discover -s tests -v

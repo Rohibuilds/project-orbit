@@ -1,77 +1,27 @@
-<div align="center">
-
 # Project ORBIT
+**Rohi | RA TECH** · AI workbench assistant
 
-**Modular desk assistant combining computer vision, voice interaction and practical electronics tools.**
+ORBIT runs on the recovered PC/laptop computing platform and combines a desk camera, project memory, photo/video capture, experimental resistor recognition and optional voice/local AI.
 
-![Status](https://img.shields.io/badge/status-active_development-5D6BFF?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Modular_AI_system-101820?style=flat-square)
-![Brand](https://img.shields.io/badge/by-RA_TECH-101820?style=flat-square)
+**[Open the main Python code](orbit.py) · [Modules](modules) · [Hardware](hardware/README.md) · [How to build](docs/README.md)**
 
-</div>
+## Included source
+- `orbit.py`: Flask dashboard, command handling, camera and voice loops.
+- `modules/`: capture, speech, local AI, project storage and resistor decoding.
+- `config.json`, `requirements.txt`, `install.sh`: setup and configuration.
+- `tests/`: storage, decoding, API and camera-failure regression checks.
 
-## Overview
+Recovered from **ORBIT_v1_Source_Code.zip** and **ORBIT_v1_Complete_Build_Guide.pdf**. This is the existing workstation software, not ESP32 firmware. Motorized-arm control is not present in the recovered source.
 
-Project ORBIT is a modular desk assistant designed to bring vision, voice, and practical electronics tools into one workspace. The planned system reuses a compact laptop mainboard and display while adding a desk camera and an articulated assistant arm.
-
-> **Project status:** Active development
-
-## Highlights
-
-- Voice-based desk assistance
-- Camera-assisted component inspection
-- Resistor identification workflow
-- Modular hardware architecture
-- Repurposed laptop mainboard and display
-- Expandable robotic desk-arm concept
-
-## Hardware
-
-| Component | Role |
-|---|---|
-| Samsung laptop mainboard with 8 GB DDR3 | Main processing and control |
-| SSD storage | Project subsystem |
-| Wi-Fi and Bluetooth | Project subsystem |
-| 12-inch LCD | Project subsystem |
-| Desk camera | Project subsystem |
-| Arm actuators and controller electronics | Project subsystem |
-
-## Repository structure
-
-```text
-project-orbit/
-├── firmware/   Tested source code and configuration notes
-├── hardware/   Wiring, components, PCB, and enclosure information
-├── docs/       Build guide, calibration, results, and troubleshooting
-├── media/      Prototype images, diagrams, and demo links
-└── README.md   Project overview and release status
+## Quick start on Ubuntu
+```bash
+bash install.sh
+source .venv/bin/activate
+python orbit.py
 ```
+Read [the build guide](docs/README.md) before installation. Open **http://127.0.0.1:8080**. The dashboard binds to the local PC by default; the guide explains trusted-LAN phone access.
 
-## Current public release
+## Repairs
+Atomic, thread-safe project storage; unique capture names; recording cleanup when a project ends; handling failed image/video writes; serialized commands; optional audio that fails gracefully; validation of API input; correct gold/silver resistor multipliers; portable dashboard element access; quoted installer paths.
 
-This initial release establishes the verified project overview and a clean documentation structure. Firmware, wiring diagrams, and media will be added only after each item is checked for accuracy and private credentials are removed.
-
-## Roadmap
-
-- [ ] Finalize the mechanical arm architecture
-- [ ] Integrate the desk camera
-- [ ] Build the resistor-recognition pipeline
-- [ ] Add the voice interface
-- [ ] Publish tested modules as separate releases
-
-## Safety and reproducibility
-
-- Verify every supply voltage before powering the controller or modules.
-- Use a common ground and a power source sized for peak motor or audio current.
-- Never commit Wi-Fi passwords, API keys, personal contact details, or certificates.
-- Recheck the published pin map against the tested hardware before assembly.
-
----
-
-<div align="center">
-
-**Designed and developed by [Rohi · RA TECH](https://github.com/Rohibuilds)**
-
-<sub>Build. Test. Improve. Share.</sub>
-
-</div>
+[Validation record](docs/VALIDATION.md) · [Live automated test results](https://github.com/Rohibuilds/project-orbit/actions)

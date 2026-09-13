@@ -1,0 +1,9 @@
+secrets.h
+.env
+.venv/
+__pycache__/
+*.pyc
+projects/
+logs/
+orbit.desktop
+.DS_Store
